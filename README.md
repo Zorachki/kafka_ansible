@@ -32,6 +32,7 @@ First of all change directory (/opt/kafka default)
 `cd /opt/kafka`
 
 then
+
 Check the number of connected brokers (it must be three WATCHERS)
 
 `bin/zookeeper-shell.sh 127.0.0.1:2181 ls /brokers/ids`
