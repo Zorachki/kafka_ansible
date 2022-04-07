@@ -1,6 +1,6 @@
 # Kafka Ansible
 
-It's just an Ansible role to set up Kafka cluster on three nodes and nothing else. You can use it (I believe) on these
+It's just an Ansible role to set up Kafka cluster on three nodes and nothing else. You can use it on these
 
 ## Platforms
 
