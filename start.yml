@@ -1,0 +1,5 @@
+- name: Install Kafka cluster
+  hosts: kafka
+  become: True
+  roles:
+    - kafka

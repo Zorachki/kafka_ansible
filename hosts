@@ -1,0 +1,8 @@
+kafka1 ansible_host=192.168.1.18 id=1
+kafka2 ansible_host=192.168.1.19 id=2
+kafka3 ansible_host=192.168.1.20 id=3
+
+[kafka]
+kafka1 
+kafka2
+kafka3

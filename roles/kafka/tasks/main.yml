@@ -1,0 +1,45 @@
+- name: Add IP addresses to hosts files
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*{{ item }}$'
+    line: "{{ hostvars[item].ansible_host }} {{item}}"
+    state: present
+  when: hostvars[item].ansible_host is defined
+  with_items: "{{ groups.all }}"
+
+- name: Install Java (.deb)
+  apt:
+    name: openjdk-11-jdk
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install Java (.rpm)
+  yum:
+    name: java-11-openjdk-devel
+    state: present
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Locate Java path
+  shell: dirname $(dirname $(readlink -f $(which javac)))
+  register: java_path
+
+- name: Download Kafka
+  get_url:
+    url: "{{ kafka_link }}"
+    dest: /tmp
+  register: tmp_dir
+
+- name: Unarchive Kafka
+  unarchive:
+    src: "{{ tmp_dir.dest }}"
+    dest: /tmp
+    remote_src: yes
+
+- name: Create Kafka directory
+  command: "mv /tmp/kafka_{{ scala_version }}-{{ kafka_version }} {{ kafka_dir }}"
+
+- include_tasks: services.yml
+
+- include_tasks: properties.yml

@@ -1,0 +1,23 @@
+- name: Update zookeeper properties
+  template:
+    src: zookeeper.properties.j2
+    dest: "{{ kafka_dir }}/config/zookeeper.properties"
+  notify: Restart Kafka service
+
+- name: Update producer properties
+  template:
+    src: producer.properties.j2
+    dest: "{{ kafka_dir }}/config/producer.properties"
+  notify: Restart Kafka service
+
+- name: Update server properties
+  template:
+    src: server.properties.j2
+    dest: "{{ kafka_dir }}/config/server.properties"
+  notify: Restart Kafka service
+
+- name: Update zookeeper-server-start.sh
+  template:
+    src: zookeeper-server-start.sh.j2
+    dest: "{{ kafka_dir }}/bin/zookeeper-server-start.sh"
+  notify: Restart Kafka service

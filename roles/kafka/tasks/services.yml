@@ -1,0 +1,9 @@
+- name: Create Zookeeper daemon
+  template:
+    src: zookeeper.service.j2
+    dest: /etc/systemd/system/zookeeper.service
+
+- name: Create Kafka daemon
+  template:
+    src: kafka.service.j2
+    dest: /etc/systemd/system/kafka.service

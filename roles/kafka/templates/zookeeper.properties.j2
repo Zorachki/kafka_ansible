@@ -1,0 +1,11 @@
+tickTime=2000
+dataDir=/tmp/zookeeper
+clientPort=2181
+maxClientCnxns=0
+admin.enableServer=false
+initLimit=10
+syncLimit=5
+server.1={{ hostvars[groups['kafka'][0]]['ansible_default_ipv4']['address'] }}:2888:3888
+server.2={{ hostvars[groups['kafka'][1]]['ansible_default_ipv4']['address'] }}:2888:3888
+server.3={{ hostvars[groups['kafka'][2]]['ansible_default_ipv4']['address'] }}:2888:3888
+4lw.commands.whitelist=*
