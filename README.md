@@ -28,7 +28,9 @@ Default Kafka version is 3.1.0 and Scala version – 2.13.
 ## Testing
 
 First of all change directory (/opt/kafka default)
+
 `cd /opt/kafka`
+
 then
 Check the number of connected brokers (it must be three WATCHERS)
 
